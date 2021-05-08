@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
-
+use Illuminate\Http\Request;
+use Session;
 class dashboardController extends Controller
 {
 

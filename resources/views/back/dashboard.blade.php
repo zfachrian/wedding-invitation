@@ -10,7 +10,7 @@ Dashboard
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Selamat Datang</h1>
+        <h1 style="text-transform: capitalize;">Selamat Datang {{Session::get('name')}}</h1>
       </div>
     </div>
   </div><!-- /.container-fluid -->

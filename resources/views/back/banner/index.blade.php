@@ -21,7 +21,7 @@ Banner
     </div>
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-success btn-sm float-right ">Tambah Kategori</button>
+        <a href="{{ route('back.banner.create') }}" class="btn btn-success btn-sm float-right ">Tambah Banner</a>
       </div>
     </div>
   </div><!-- /.container-fluid -->
@@ -30,29 +30,38 @@ Banner
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-      @for($i = 0; $i < 5; $i++) <div class="col-md-3">
+
+      @foreach($banners as $banner)
+      <div class="col-md-3">
         <div class="card card-secondary">
           <div class="card-header">
-            <h3 class="card-title">Nama Banner</h3>
+            <h3 class="card-title">{{$loop->iteration}}. {{$banner->banner_title}}</h3>
 
             <div class="card-tools">
-              <button type="button" class="btn btn-tool"><i class="fas fa-times"></i>
-              </button>
             </div>
             <!-- /.card-tools -->
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <img class="img-fluid pad" src="https://adminlte.io/themes/dev/AdminLTE/dist/img/photo2.png" alt="Photo">
+            <img class="img-fluid pad" src="{{ asset('storage/'.$banner->banner_image) }}" alt="Photo">
+
+            <div class="row mt-2">
+              <div class="col-6">
+                <button type="button" class="btn btn-block bg-gradient-danger btn-sm float-left">Hapus</button>
+              </div>
+              <div class="col-6">
+                <a href="{{ route('back.banner.edit', $banner->id) }}" class="btn btn-block bg-gradient-warning btn-sm float-right">Ubah</a>
+              </div>
+            </div>
           </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
-    </div>
-    <!-- /.col -->
-    @endfor
+      </div>
+      <!-- /.col -->
+      @endforeach
 
-  </div>
+    </div>
   </div>
 </section>
 @endsection

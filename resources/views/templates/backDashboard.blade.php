@@ -86,7 +86,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{route('back.logout')}}" class="nav-link">
                 <i class="nav-icon far fa-circle"></i>
                 <p>
                   Logout
@@ -125,10 +125,17 @@
   <script src="{{asset('back/plugins/jquery/jquery.min.js')}}"></script>
   <!-- Bootstrap 4 -->
   <script src="{{asset('back/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <!-- bs-custom-file-input -->
+  <script src="{{asset('back/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
   <!-- AdminLTE App -->
   <script src="{{asset('back/dist/js/adminlte.min.js')}}"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="{{asset('back/dist/js/demo.js')}}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      bsCustomFileInput.init();
+    });
+  </script>
 </body>
 
 </html>
