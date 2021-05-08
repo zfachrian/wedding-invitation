@@ -21,6 +21,8 @@ Route::group(['middleware' => 'is.login', 'prefix' => 'panel', 'as' => 'back.', 
   Route::get('/banner/create', 'bannerController@create')->name('banner.create');
   Route::post('/banner', 'bannerController@store')->name('banner.store');
   Route::get('/banner/edit/{id}', 'bannerController@edit')->name('banner.edit');
+  Route::put('/banner/{id}', 'bannerController@update')->name('banner.update');
+  Route::delete('/banner/{id}', 'bannerController@destroy')->name('banner.destroy');
 
   
   Route::get('/category', 'categoryController@index')->name('category');

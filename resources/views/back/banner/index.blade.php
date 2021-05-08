@@ -31,6 +31,10 @@ Banner
   <div class="container-fluid">
     <div class="row">
 
+      @if(count($banners) == 0)
+      <h5 class="mt-5" style="margin: auto;">Banner Kosong</h5>
+      @endif
+
       @foreach($banners as $banner)
       <div class="col-md-3">
         <div class="card card-secondary">
@@ -47,7 +51,11 @@ Banner
 
             <div class="row mt-2">
               <div class="col-6">
-                <button type="button" class="btn btn-block bg-gradient-danger btn-sm float-left">Hapus</button>
+                <form role="form" method="post" action="{{route('back.banner.destroy', $banner->id)}}" enctype="multipart/form-data">
+                  @csrf
+                  @method('delete')
+                  <button type="submit" class="btn btn-block bg-gradient-danger btn-sm float-left">Hapus</button>
+                </form>
               </div>
               <div class="col-6">
                 <a href="{{ route('back.banner.edit', $banner->id) }}" class="btn btn-block bg-gradient-warning btn-sm float-right">Ubah</a>

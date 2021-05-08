@@ -45,25 +45,27 @@ Edit Banner
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form role="form" method="post" action="{{route('back.banner.store')}}" enctype="multipart/form-data">
+          <form role="form" method="post" action="{{route('back.banner.update', $banner->id)}}" enctype="multipart/form-data">
             @csrf
+            @method('put')
             <div class="card-body">
               <div class="form-group">
-                <label for="exampleInputEmail1">Judul Banner</label>
-                <input type="text" class="form-control" name="title" placeholder="judul banner">
+                <label for="title">Judul Banner</label>
+                <input type="text" class="form-control" name="title" placeholder="judul banner" value="{{$banner->banner_title}}">
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Description Banner</label>
-                <input type="text" class="form-control" name="description" placeholder="description banner">
+                <label for="description">Description Banner</label>
+                <input type="text" class="form-control" name="description" placeholder="description banner" value="{{$banner->banner_description}}">
               </div>
               <div class="form-group">
-                <label for="exampleInputFile">Foto Banner</label>
+                <label for="image">Foto Banner</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="image" id="image" required>
+                    <input type="file" class="custom-file-input" name="image" id="image">
                     <label class="custom-file-label" for="image">Choose file</label>
                   </div>
                 </div>
+                <p>ukurang maksimal 2mb, dengan format jpg/png</p>
               </div>
             </div>
             <!-- /.card-body -->

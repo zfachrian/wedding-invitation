@@ -39,6 +39,12 @@ Create Banner
         </div>
         @endif
 
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+          {{ $error }}
+        </div>
+        @endforeach
+
         <div class="card card-secondary">
           <div class="card-header">
             <h3 class="card-title">Form Banner</h3>
@@ -57,13 +63,14 @@ Create Banner
                 <input type="text" class="form-control" name="description" placeholder="description banner">
               </div>
               <div class="form-group">
-                <label for="exampleInputFile">Foto Banner</label>
+                <label for="exampleInputFile">Foto Banner *</label>
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="image" id="image" required>
                     <label class="custom-file-label" for="image">Choose file</label>
                   </div>
                 </div>
+                <p>ukurang maksimal 2mb, dengan format jpg/png</p>
               </div>
             </div>
             <!-- /.card-body -->
