@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('back/plugins/fontawesome-free/css/all.min.css')}}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{asset('back/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('back/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('back/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('back/dist/css/adminlte.min.css')}}">
 </head>
@@ -69,7 +73,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="../gallery.html" class="nav-link">
+              <a href="{{ url('/panel/store') }}" class="nav-link">
                 <i class="nav-icon far fa-circle"></i>
                 <p>
                   Store Setting
@@ -77,7 +81,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="../gallery.html" class="nav-link">
+              <a href="{{ url('/panel/password') }}" class="nav-link">
                 <i class="nav-icon far fa-circle"></i>
                 <p>
                   Ubah Password
@@ -131,9 +135,34 @@
   <script src="{{asset('back/dist/js/adminlte.min.js')}}"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="{{asset('back/dist/js/demo.js')}}"></script>
+  <!-- DataTables  & Plugins -->
+  <script src="{{asset('back/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('back/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('back/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+  <script src="{{asset('back/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('back/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+  <script src="{{asset('back/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('back/plugins/jszip/jszip.min.js')}}"></script>
+  <script src="{{asset('back/plugins/pdfmake/pdfmake.min.js')}}"></script>
+  <script src="{{asset('back/plugins/pdfmake/vfs_fonts.js')}}"></script>
+  <script src="{{asset('back/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+  <script src="{{asset('back/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+  <script src="{{asset('back/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
   <script type="text/javascript">
     $(document).ready(function() {
       bsCustomFileInput.init();
+    });
+  </script>
+  <!-- Page specific script -->
+  <script>
+    $(function() {
+      $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["excel"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
   </script>
 </body>

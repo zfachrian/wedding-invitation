@@ -1,7 +1,7 @@
 @extends('templates.backDashboard')
 
 @section('title')
-Create Banner
+Create Category
 @endsection
 
 @section('content')
@@ -10,12 +10,12 @@ Create Banner
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Create Banner</h1>
+        <h1>Create Category</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item">Panel</li>
-          <li class="breadcrumb-item active"><a href="{{route('back.banner')}}">Banner</a></li>
+          <li class="breadcrumb-item active"><a href="{{route('back.category')}}">Category</a></li>
           <li class="breadcrumb-item active">Create</li>
         </ol>
       </div>
@@ -47,30 +47,20 @@ Create Banner
 
         <div class="card card-secondary">
           <div class="card-header">
-            <h3 class="card-title">Form Banner</h3>
+            <h3 class="card-title">Form Category</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form role="form" method="post" action="{{route('back.banner.store')}}" enctype="multipart/form-data">
+          <form role="form" method="post" action="{{route('back.category.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
               <div class="form-group">
-                <label for="exampleInputEmail1">Judul Banner</label>
-                <input type="text" class="form-control" name="title" placeholder="judul banner">
+                <label for="title">Judul Kategori *</label>
+                <input type="text" class="form-control" name="title" placeholder="judul kategori" required>
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Description Banner</label>
-                <input type="text" class="form-control" name="description" placeholder="description banner">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputFile">Foto Banner *</label>
-                <div class="input-group">
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="image" id="image" required>
-                    <label class="custom-file-label" for="image">Choose file</label>
-                  </div>
-                </div>
-                <p>ukurang maksimal 2mb, dengan format jpg/png</p>
+                <label for="description">Description Kategori</label>
+                <textarea class="form-control" rows="3" name="description" placeholder="description kategori"></textarea>
               </div>
             </div>
             <!-- /.card-body -->

@@ -1,7 +1,7 @@
 @extends('templates.backDashboard')
 
 @section('title')
-Create Banner
+Edit Store
 @endsection
 
 @section('content')
@@ -10,13 +10,12 @@ Create Banner
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Create Banner</h1>
+        <h1>Store Setting</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item">Panel</li>
-          <li class="breadcrumb-item active"><a href="{{route('back.banner')}}">Banner</a></li>
-          <li class="breadcrumb-item active">Create</li>
+          <li class="breadcrumb-item active">Store Setting</li>
         </ol>
       </div>
     </div>
@@ -47,36 +46,44 @@ Create Banner
 
         <div class="card card-secondary">
           <div class="card-header">
-            <h3 class="card-title">Form Banner</h3>
+            <h3 class="card-title">Form Store Setting</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form role="form" method="post" action="{{route('back.banner.store')}}" enctype="multipart/form-data">
+          <form role="form" method="post" action="{{route('back.store.update', $store->id)}}">
             @csrf
+            @method('put')
+
             <div class="card-body">
               <div class="form-group">
-                <label for="exampleInputEmail1">Judul Banner</label>
-                <input type="text" class="form-control" name="title" placeholder="judul banner">
+                <label for="title">Judul</label>
+                <input type="text" class="form-control" name="title" placeholder="judul kategori" value="{{$store->store_name}}">
               </div>
+
               <div class="form-group">
-                <label for="exampleInputPassword1">Description Banner</label>
-                <input type="text" class="form-control" name="description" placeholder="description banner">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" placeholder="judul kategori" value="{{$store->store_email}}">
               </div>
+
               <div class="form-group">
-                <label for="exampleInputFile">Foto Banner *</label>
-                <div class="input-group">
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="image" id="image" required>
-                    <label class="custom-file-label" for="image">Choose file</label>
-                  </div>
-                </div>
-                <p>ukurang maksimal 2mb, dengan format jpg/png</p>
+                <label for="whatsapp">Whatsapp</label>
+                <input type="text" class="form-control" name="whatsapp" placeholder="judul kategori" value="{{$store->store_wa}}">
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" name="phone" placeholder="judul kategori" value="{{$store->store_phone}}">
+              </div>
+              
+              <div class="form-group">
+                <label for="phone">Address</label>
+                <textarea class="form-control" rows="3" name="address" placeholder="address">{{$store->store_address}}</textarea>
               </div>
             </div>
             <!-- /.card-body -->
 
             <div class="card-footer">
-              <button type="submit" class="btn btn-primary float-right">Create</button>
+              <button type="submit" class="btn btn-primary float-right">Update</button>
             </div>
           </form>
         </div>

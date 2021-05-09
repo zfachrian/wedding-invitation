@@ -1,7 +1,7 @@
 @extends('templates.backDashboard')
 
 @section('title')
-Create Banner
+Create Product
 @endsection
 
 @section('content')
@@ -10,12 +10,12 @@ Create Banner
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Create Banner</h1>
+        <h1>Create Product</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item">Panel</li>
-          <li class="breadcrumb-item active"><a href="{{route('back.banner')}}">Banner</a></li>
+          <li class="breadcrumb-item active"><a href="{{route('back.product')}}">Product</a></li>
           <li class="breadcrumb-item active">Create</li>
         </ol>
       </div>
@@ -47,20 +47,32 @@ Create Banner
 
         <div class="card card-secondary">
           <div class="card-header">
-            <h3 class="card-title">Form Banner</h3>
+            <h3 class="card-title">Form Produk</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form role="form" method="post" action="{{route('back.banner.store')}}" enctype="multipart/form-data">
+          <form role="form" method="post" action="{{route('back.product.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
               <div class="form-group">
-                <label for="exampleInputEmail1">Judul Banner</label>
-                <input type="text" class="form-control" name="title" placeholder="judul banner">
+                <label>Pilih Kategori *</label>
+                <select name="category" class="form-control" required>
+                  @foreach($categories as $category)
+                  <option value="{{$category->id}}">{{$category->category_name}}</option>
+                  @endforeach
+                </select>
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Description Banner</label>
-                <input type="text" class="form-control" name="description" placeholder="description banner">
+                <label for="title">Judul Product *</label>
+                <input type="text" class="form-control" name="title" placeholder="judul product" required>
+              </div>
+              <div class="form-group">
+                <label for="description">Description Product</label>
+                <textarea class="form-control" rows="3" name="description" placeholder="description product"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="description">Harga Product *</label>
+                <input type="number" class="form-control" name="price" placeholder="harga product" required>
               </div>
               <div class="form-group">
                 <label for="exampleInputFile">Foto Banner *</label>

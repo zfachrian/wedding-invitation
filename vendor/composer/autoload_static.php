@@ -33,6 +33,7 @@ class ComposerStaticInitf5ae2a77c93a7ef98faa72c4888e7006
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '8fde5feda9697fe0ee53a3938c839fb0' => __DIR__ . '/../..' . '/app/Helpers/Helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -486,6 +487,10 @@ class ComposerStaticInitf5ae2a77c93a7ef98faa72c4888e7006
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Models\\Banner' => __DIR__ . '/../..' . '/app/Http/Models/Banner.php',
+        'App\\Http\\Models\\Category' => __DIR__ . '/../..' . '/app/Http/Models/Category.php',
+        'App\\Http\\Models\\Product' => __DIR__ . '/../..' . '/app/Http/Models/Product.php',
+        'App\\Http\\Models\\Store' => __DIR__ . '/../..' . '/app/Http/Models/Store.php',
         'App\\Http\\Models\\User' => __DIR__ . '/../..' . '/app/Http/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -4088,6 +4093,7 @@ class ComposerStaticInitf5ae2a77c93a7ef98faa72c4888e7006
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'StoresTableSeeder' => __DIR__ . '/../..' . '/database/seeds/StoresTableSeeder.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\Color' => __DIR__ . '/..' . '/symfony/console/Color.php',

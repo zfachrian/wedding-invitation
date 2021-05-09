@@ -1,7 +1,7 @@
 @extends('templates.backDashboard')
 
 @section('title')
-Create Banner
+Change Password
 @endsection
 
 @section('content')
@@ -10,13 +10,12 @@ Create Banner
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Create Banner</h1>
+        <h1>Change Password</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item">Panel</li>
-          <li class="breadcrumb-item active"><a href="{{route('back.banner')}}">Banner</a></li>
-          <li class="breadcrumb-item active">Create</li>
+          <li class="breadcrumb-item active">Change Password</li>
         </ol>
       </div>
     </div>
@@ -47,36 +46,34 @@ Create Banner
 
         <div class="card card-secondary">
           <div class="card-header">
-            <h3 class="card-title">Form Banner</h3>
+            <h3 class="card-title">Form Change Password</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form role="form" method="post" action="{{route('back.banner.store')}}" enctype="multipart/form-data">
+          <form role="form" method="post" action="{{route('back.password.update')}}">
             @csrf
+            @method('put')
+            <input type="hidden" class="form-control" name="email" value="{{Session::get('email')}}">
+
             <div class="card-body">
               <div class="form-group">
-                <label for="exampleInputEmail1">Judul Banner</label>
-                <input type="text" class="form-control" name="title" placeholder="judul banner">
+                <label for="title">Current Password</label>
+                <input type="password" class="form-control" name="current_password">
+              </div>
+
+              <div class="form-group">
+                <label for="title">New Password</label>
+                <input type="password" class="form-control" name="password">
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Description Banner</label>
-                <input type="text" class="form-control" name="description" placeholder="description banner">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputFile">Foto Banner *</label>
-                <div class="input-group">
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="image" id="image" required>
-                    <label class="custom-file-label" for="image">Choose file</label>
-                  </div>
-                </div>
-                <p>ukurang maksimal 2mb, dengan format jpg/png</p>
+                <label for="title">New Password Confirmation</label>
+                <input type="password" class="form-control" name="password_confirmation">
               </div>
             </div>
             <!-- /.card-body -->
 
             <div class="card-footer">
-              <button type="submit" class="btn btn-primary float-right">Create</button>
+              <button type="submit" class="btn btn-primary float-right">Update</button>
             </div>
           </form>
         </div>

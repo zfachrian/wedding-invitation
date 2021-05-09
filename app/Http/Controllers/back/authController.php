@@ -31,6 +31,7 @@ class authController extends Controller
               session([
                   'id'                => $data->id,
                   'name'              => $data->name,
+                  'email'              => $data->email,
                   'auth'              => True
               ]);
               return redirect('/panel/dashboard');

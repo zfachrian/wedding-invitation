@@ -1,7 +1,7 @@
 @extends('templates.backDashboard')
 
 @section('title')
-Produk
+Kategori
 @endsection
 
 @section('content')
@@ -10,12 +10,12 @@ Produk
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Produk</h1>
+        <h1>Kategori</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item active">Panel</li>
-          <li class="breadcrumb-item active">Produk</li>
+          <li class="breadcrumb-item active">Kategori</li>
         </ol>
       </div>
     </div>
@@ -26,11 +26,11 @@ Produk
   <div class="container-fluid">
     <div class="row">
 
-      <div class="col-md-6">
+      <div class="col-md-8">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">List Produk</h3>
-            <button type="button" class="btn btn-success btn-sm float-right ">Tambah Produk</button>
+            <h3 class="card-title">List Kategori</h3>
+            <a href="{{route('back.category.create')}}" class="btn btn-success btn-sm float-right ">Tambah Kategori</a>
           </div>
           <!-- /.card-header -->
           <div class="card-body p-0">
@@ -38,22 +38,29 @@ Produk
               <thead>
                 <tr>
                   <th style="width: 10px">No</th>
-                  <th>Foto</th>
                   <th>Nama</th>
+                  <th style="width: 50%">Deskripsi</th>
                   <th style="width: 40px">Action</th>
                   <th style="width: 40px"></th>
                 </tr>
               </thead>
               <tbody>
 
-                @for($i = 1; $i <= 5; $i ++) <tr>
-                  <td>{{$i}}.</td>
-                  <td><img class="img-fluid pad" src="https://adminlte.io/themes/dev/AdminLTE/dist/img/photo2.png" alt="Photo"></td>
-                  <td>Nama Kategori</td>
-                  <td><span class="badge bg-danger">Hapus</span></td>
-                  <td><span class="badge bg-warning">Ubah</span></td>
-                  </tr>
-                  @endfor
+                @foreach($categories as $category)
+                <tr>
+                  <td>{{$loop->iteration}}.</td>
+                  <td>{{$category->category_name}}</td>
+                  <td>{{$category->category_detail}}</td>
+                  <td>
+                    <form role="form" method="post" action="{{route('back.category.destroy', $category->id)}}">
+                      @csrf
+                      @method('delete')
+                      <button type="submit" class="btn btn-block btn-danger btn-sm">Hapus</button>
+                    </form>
+                  </td>
+                  <td><a href="{{route('back.category.edit', $category->id)}}" class="btn btn-block btn-warning btn-sm">Ubah</a></td>
+                </tr>
+                @endforeach
 
               </tbody>
             </table>
