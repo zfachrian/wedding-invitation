@@ -41,6 +41,7 @@ Produk
                     <thead>
                       <tr role="row">
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">No</th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Kode</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Nama</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Kategori</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Harga</th>
@@ -53,6 +54,7 @@ Produk
                       @foreach($products as $product)
                       <tr class="odd">
                         <td class="dtr-control" tabindex="0">{{$loop->iteration}}.</td>
+                        <td class="sorting_1">{{$product->product_code}}</td>
                         <td class="sorting_1">{{$product->product_name}}</td>
                         <td class="">{{$product->category->category_name}}</td>
                         <td class="">{{formatMoney($product->product_price, "Rp. ")}},-</td>
@@ -71,6 +73,7 @@ Produk
                     <tfoot>
                       <tr>
                         <th rowspan="1" colspan="1">No</th>
+                        <th rowspan="1" colspan="1">Kode</th>
                         <th rowspan="1" colspan="1">Nama</th>
                         <th rowspan="1" colspan="1">Kategori</th>
                         <th rowspan="1" colspan="1">Harga</th>

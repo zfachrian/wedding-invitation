@@ -40,6 +40,7 @@ class productController extends Controller
       // Eloquent ORM
       $Product = new Product;
       $Product->product_img = $gambar;
+      $Product->product_code = $request->code;
       $Product->product_name = $request->title;
       $Product->product_price = $request->price;
       $Product->product_description = $request->description;
@@ -81,6 +82,7 @@ class productController extends Controller
         $Product->product_img = $gambar;
       }
     }
+    $Product->product_code = $request->code;
     $Product->product_name = $request->title;
     $Product->product_price = $request->price;
     $Product->product_description = $request->description;

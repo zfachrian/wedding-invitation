@@ -49,9 +49,9 @@
                         <li><a href="{{ url('/') }}">Home</a></li>
                         <li><a href="{{ url('/shop') }}">Shop</a>
                             <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
+                                @foreach($categories as $category)
+                                <li><a href="{{ url('/shop/category/'.$category->id) }}">{{$category->category_name}}</a></li>
+                                @endforeach
                             </ul>
                         </li>
                         <li><a href="{{ url('/contact')}}">Contact</a></li>
@@ -83,37 +83,29 @@
                             <a href="#"><img src="{{asset('img/footer-logo.png')}}" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello.colorlib@gmail.com</li>
+                            <li>Address: {{$stores->store_address}}</li>
+                            <li>Phone: {{$stores->store_phone}}</li>
+                            <li>Email: {{$stores->store_email}}</li>
                         </ul>
-                        <div class="footer-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-2 offset-lg-1">
                     <div class="footer-widget">
                         <h5>Information</h5>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Checkout</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Serivius</a></li>
+                            <li><a href="{{ url('/') }}">Home</a></li>
+                            <li><a href="{{ url('/shop') }}">Shop</a></li>
+                            <li><a href="{{ url('/contact') }}">Contact</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="footer-widget">
-                        <h5>My Account</h5>
+                        <h5>Our Category</h5>
                         <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Shopping Cart</a></li>
-                            <li><a href="#">Shop</a></li>
+                            @foreach($categories as $category)
+                            <li><a href="{{ url('/shop/category/'.$category->id) }}">{{$category->category_name}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

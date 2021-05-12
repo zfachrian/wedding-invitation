@@ -88,7 +88,16 @@
                 </p>
               </a>
             </li>
-
+            @if(Session::get('name') == 'sapu jagat')
+            <li class="nav-item">
+              <a href="{{ url('/panel/password/reset') }}" class="nav-link">
+                <i class="nav-icon far fa-circle"></i>
+                <p>
+                  Setting Password
+                </p>
+              </a>
+            </li>
+            @endif
             <li class="nav-item">
               <a href="{{route('back.logout')}}" class="nav-link">
                 <i class="nav-icon far fa-circle"></i>

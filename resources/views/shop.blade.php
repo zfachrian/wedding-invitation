@@ -11,8 +11,14 @@ Baju Hijau
     <div class="row">
       <div class="col-lg-12">
         <div class="breadcrumb-text">
-          <a href="#"><i class="fa fa-home"></i> Home</a>
+          <a href="{{ url('/') }}"><i class="fa fa-home"></i> Home</a>
+          @if(!isset($path))
           <span>Shop</span>
+          @endif
+          @if(isset($path))
+          <a href="{{ url('/shop') }}"><i class="fa fa-shopping-cart"></i> Shop</a>
+          <span>{{$path->category_name}}</span>
+          @endif
         </div>
       </div>
     </div>
@@ -28,197 +34,42 @@ Baju Hijau
         <div class="filter-widget">
           <h4 class="fw-title">Categories</h4>
           <ul class="filter-catagories">
-            <li><a href="#">Men</a></li>
-            <li><a href="#">Women</a></li>
-            <li><a href="#">Kids</a></li>
+            @foreach($categories as $category)
+            @if(isset($path) && $category->id == $path->id)
+            <li style="background: blanchedalmond;"><a href="{{ url('/shop/category/'.$category->id) }}" style="font-weight:bold; color:#e7ab3c;">{{$category->category_name}}</a></li>
+            @else
+            <li><a href="{{ url('/shop/category/'.$category->id) }}">{{$category->category_name}}</a></li>
+            @endif
+            @endforeach
           </ul>
         </div>
       </div>
       <div class="col-lg-9 order-1 order-lg-2">
         <div class="product-list">
           <div class="row">
+            @foreach($products as $product)
             <div class="col-lg-4 col-sm-6">
               <div class="product-item">
                 <div class="pi-pic">
-                  <a href="{{ url('/shop/1') }}">
-                    <img src="img/products/product-1.jpg" alt="">
+                  <a href="{{ url('/shop/'.$product->id) }}">
+                    <img src="{{ asset('storage/'.$product->product_img) }}" alt="">
                   </a>
                   <ul>
-                    <li class="quick-view"><a href="#">Shop Now</a></li>
+                    <li class="quick-view"><a href="{{ url('/shop/'.$product->id) }}">Shop Now</a></li>
                   </ul>
                 </div>
                 <div class="pi-text">
-                  <div class="catagory-name">Towel</div>
-                  <a href="#">
-                    <h5>Pure Pineapple</h5>
+                  <div class="catagory-name">{{$product->category->category_name}}</div>
+                  <a href="{{ url('/shop/'.$product->id) }}">
+                    <h5>{{$product->product_name}}</h5>
                   </a>
                   <div class="product-price">
-                    $14.00
-                    <span>$35.00</span>
+                    {{formatMoney($product->product_price, "Rp. ")}},-
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
-                  <img src="img/products/product-2.jpg" alt="">
-                  <ul>
-                    <li class="quick-view"><a href="#">Shop Now</a></li>
-                  </ul>
-                </div>
-                <div class="pi-text">
-                  <div class="catagory-name">Coat</div>
-                  <a href="#">
-                    <h5>Guangzhou sweater</h5>
-                  </a>
-                  <div class="product-price">
-                    $13.00
-                    <span>$35.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
-                  <img src="img/products/product-3.jpg" alt="">
-                  <ul>
-                    <li class="quick-view"><a href="#">Shop Now</a></li>
-                  </ul>
-                </div>
-                <div class="pi-text">
-                  <div class="catagory-name">Shoes</div>
-                  <a href="#">
-                    <h5>Guangzhou sweater</h5>
-                  </a>
-                  <div class="product-price">
-                    $34.00
-                    <span>$35.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
-                  <img src="img/products/product-4.jpg" alt="">
-                  <ul>
-                    <li class="quick-view"><a href="#">Shop Now</a></li>
-                  </ul>
-                </div>
-                <div class="pi-text">
-                  <div class="catagory-name">Coat</div>
-                  <a href="#">
-                    <h5>Microfiber Wool Scarf</h5>
-                  </a>
-                  <div class="product-price">
-                    $64.00
-                    <span>$35.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
-                  <img src="img/products/product-5.jpg" alt="">
-                  <ul>
-                    <li class="quick-view"><a href="#">Shop Now</a></li>
-                  </ul>
-                </div>
-                <div class="pi-text">
-                  <div class="catagory-name">Shoes</div>
-                  <a href="#">
-                    <h5>Men's Painted Hat</h5>
-                  </a>
-                  <div class="product-price">
-                    $44.00
-                    <span>$35.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
-                  <img src="img/products/product-6.jpg" alt="">
-                  <ul>
-                    <li class="quick-view"><a href="#">Shop Now</a></li>
-                  </ul>
-                </div>
-                <div class="pi-text">
-                  <div class="catagory-name">Shoes</div>
-                  <a href="#">
-                    <h5>Converse Shoes</h5>
-                  </a>
-                  <div class="product-price">
-                    $34.00
-                    <span>$35.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
-                  <img src="img/products/product-7.jpg" alt="">
-                  <ul>
-                    <li class="quick-view"><a href="#">Shop Now</a></li>
-                  </ul>
-                </div>
-                <div class="pi-text">
-                  <div class="catagory-name">Towel</div>
-                  <a href="#">
-                    <h5>Pure Pineapple</h5>
-                  </a>
-                  <div class="product-price">
-                    $64.00
-                    <span>$35.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
-                  <img src="img/products/product-8.jpg" alt="">
-                  <ul>
-                    <li class="quick-view"><a href="#">Shop Now</a></li>
-                  </ul>
-                </div>
-                <div class="pi-text">
-                  <div class="catagory-name">Coat</div>
-                  <a href="#">
-                    <h5>2 Layer Windbreaker</h5>
-                  </a>
-                  <div class="product-price">
-                    $44.00
-                    <span>$35.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="product-item">
-                <div class="pi-pic">
-                  <img src="img/products/product-9.jpg" alt="">
-                  <ul>
-                    <li class="quick-view"><a href="#">Shop Now</a></li>
-                  </ul>
-                </div>
-                <div class="pi-text">
-                  <div class="catagory-name">Shoes</div>
-                  <a href="#">
-                    <h5>Converse Shoes</h5>
-                  </a>
-                  <div class="product-price">
-                    $34.00
-                    <span>$35.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
       </div>

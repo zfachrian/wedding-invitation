@@ -79,6 +79,26 @@ Edit Store
                 <label for="phone">Address</label>
                 <textarea class="form-control" rows="3" name="address" placeholder="address">{{$store->store_address}}</textarea>
               </div>
+              
+              <div class="form-group">
+                <label for="phone">About Us</label>
+                <textarea class="form-control" rows="3" name="about" placeholder="">{{$store->store_about}}</textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Text Beli</label>
+                <input type="text" class="form-control" name="textBuy" placeholder="" value="{{$store->store_text_buy}}">
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Text Tukar</label>
+                <input type="text" class="form-control" name="textTrade" placeholder="" value="{{$store->store_text_trade}}">
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Rekening Bank</label>
+                <input type="text" class="form-control" name="rekening" placeholder="" value="{{$store->store_bank_account}}">
+              </div>
             </div>
             <!-- /.card-body -->
 
