@@ -11,7 +11,7 @@ Contact
     <div class="row">
       <div class="col-lg-12">
         <div class="breadcrumb-text">
-          <a href="#"><i class="fa fa-home"></i> Home</a>
+          <a href="{{url('/')}}"><i class="fa fa-home"></i> Home</a>
           <span>Contact</span>
         </div>
       </div>
@@ -40,9 +40,16 @@ Contact
     <div class="row">
       <div class="col-lg-5">
         <div class="contact-title">
+          <h4>About Us</h4>
+        </div>
+        <p>{{$stores->store_about}}</p>
+      </div>
+    </div>
+    <div class="mt-5"></div>
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="contact-title">
           <h4>Contacts Us</h4>
-          <p>Contrary to popular belief, Lorem Ipsum is simply random text. It has roots in a piece of
-            classical Latin literature from 45 BC, maki years old.</p>
         </div>
         <div class="contact-widget">
           <div class="cw-item">
@@ -51,7 +58,7 @@ Contact
             </div>
             <div class="ci-text">
               <span>Address:</span>
-              <p>60-49 Road 11378 New York</p>
+              <p>{{$stores->store_address}}</p>
             </div>
           </div>
           <div class="cw-item">
@@ -60,7 +67,7 @@ Contact
             </div>
             <div class="ci-text">
               <span>Phone:</span>
-              <p>+65 11.188.888</p>
+              <p>{{$stores->store_phone}}</p>
             </div>
           </div>
           <div class="cw-item">
@@ -69,7 +76,7 @@ Contact
             </div>
             <div class="ci-text">
               <span>Email:</span>
-              <p>hellocolorlib@gmail.com</p>
+              <p>{{$stores->store_email}}</p>
             </div>
           </div>
         </div>

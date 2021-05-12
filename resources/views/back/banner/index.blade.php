@@ -47,7 +47,7 @@ Banner
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <img class="img-fluid pad" style="max-width: 300px;"  src="{{ asset('storage/'.$banner->banner_image) }}" alt="Photo">
+            <img class="img-fluid pad"  src="{{ asset('storage/'.$banner->banner_image) }}" alt="Photo">
 
             <div class="row mt-2">
               <div class="col-6">

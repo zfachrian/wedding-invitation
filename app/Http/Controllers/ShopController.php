@@ -3,82 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Models\Product;
+use App\Http\Models\Category;
 
 class ShopController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('shop');
+        // $product = Product::with('category')->get();
+        $products = Product::with('category')->orderByDesc('products.updated_at', 'desc')->get();
+        $categories = Category::get();
+        return view('shop', compact('products', 'categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function indexByCategory($id)
     {
-        //
+        $products = Product::with('category')->where('products.categories_id', '=', $id)->orderByDesc('products.updated_at', 'desc')->get();
+        $categories = Category::get();
+        $path = Category::findOrFail($id);
+        return view('shop', compact('products', 'categories', 'path'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        return view('detailShop');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $product = Product::with('category')->findOrFail($id);
+        $relatedProducts = Product::with('category')->where([['products.categories_id', '=', $product->category->id,], ['products.id', '!=', $product->id,]])->orderByDesc('products.updated_at', 'desc')->get();
+        return view('detailShop', compact('product', 'relatedProducts'));
     }
 }

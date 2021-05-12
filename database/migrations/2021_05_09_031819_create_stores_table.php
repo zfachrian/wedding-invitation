@@ -20,6 +20,8 @@ class CreateStoresTable extends Migration
             $table->string('store_wa');
             $table->string('store_phone');
             $table->text('store_address');
+            $table->text('store_about');
+            $table->string('store_bank_account');
             $table->timestamps();
         });
     }

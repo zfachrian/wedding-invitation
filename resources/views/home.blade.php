@@ -9,30 +9,19 @@ Home
 <!-- Hero Section Begin -->
 <section class="hero-section">
     <div class="hero-items owl-carousel">
-        <div class="single-hero-items set-bg" data-setbg="{{asset('img/hero-1.jpg')}}">
+        @foreach($banners as $banner)
+        <div class="single-hero-items set-bg" data-setbg="{{ asset('storage/'.$banner->banner_image) }}">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5">
-                        <h1>Black friday</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore</p>
-                        <a href="#" class="primary-btn">Shop Now</a>
+                        <h1>{{$banner->banner_title}}</h1>
+                        <p>{{$banner->banner_description}}</p>
+                        <a href="{{url('/shop')}}" class="primary-btn">Shop Now</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="single-hero-items set-bg" data-setbg="{{asset('img/hero-2.jpg')}}">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <h1>Black friday</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore</p>
-                        <a href="#" class="primary-btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </section>
 <!-- Hero Section End -->
@@ -41,30 +30,18 @@ Home
 <div class="banner-section spad">
     <div class="container-fluid">
         <div class="row">
+            @foreach($categories as $category)
             <div class="col-lg-4">
-                <div class="single-banner">
-                    <img src="{{asset('img/banner-1.jpg')}}" alt="">
-                    <div class="inner-text">
-                        <h4>Men’s</h4>
+                <a href="{{url('/shop/category/'.$category->id)}}">
+                    <div class="single-banner">
+                        <img src="{{asset('img/banner-' . $loop->iteration . '.jpg')}}" alt="">
+                        <div class="inner-text">
+                            <h4>{{$category->category_name}}</h4>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="col-lg-4">
-                <div class="single-banner">
-                    <img src="{{asset('img/banner-2.jpg')}}" alt="">
-                    <div class="inner-text">
-                        <h4>Women’s</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-banner">
-                    <img src="{{asset('img/banner-3.jpg')}}" alt="">
-                    <div class="inner-text">
-                        <h4>Kid’s</h4>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -76,70 +53,34 @@ Home
         <div class="row">
             <div class="col-lg-3">
                 <div class="product-large set-bg" data-setbg="{{asset('img/products/women-large.jpg')}}">
-                    <h2>Women’s</h2>
-                    <a href="#">Discover More</a>
+                    <h2>New</h2>
                 </div>
             </div>
             <div class="col-lg-8 offset-lg-1">
                 <div class="filter-control">
-                    <h3>Kategori Women Terbaru</h3>
+                    <h3>New Product</h3>
                 </div>
                 <div class="product-slider owl-carousel">
+                    @foreach($newProducts as $product)
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="{{asset('img/products/women-1.jpg')}}" alt="">
+                            <img src="{{ asset('storage/'.$product->product_img) }}" alt="">
                             <div class="sale">New</div>
                             <ul>
-                                <li class="quick-view"><a href="#">Shop Now</a></li>
+                                <li class="quick-view"><a href="{{ url('/shop/'.$product->id) }}">Shop Now</a></li>
                             </ul>
                         </div>
                         <div class="pi-text">
-                            <div class="catagory-name">Women’s</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
+                            <div class="catagory-name">{{$product->category->category_name}}</div>
+                            <a href="{{ url('/shop/'.$product->id) }}">
+                                <h5>{{$product->product_name}}</h5>
                             </a>
                             <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
+                                {{formatMoney($product->product_price, "Rp. ")}},-
                             </div>
                         </div>
                     </div>
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="{{asset('img/products/women-2.jpg')}}" alt="">
-                            <div class="sale">New</div>
-                            <ul>
-                                <li class="quick-view"><a href="#">Shop Now</a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Women’s</div>
-                            <a href="#">
-                                <h5>Guangzhou sweater</h5>
-                            </a>
-                            <div class="product-price">
-                                $13.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="{{asset('img/products/women-3.jpg')}}" alt="">
-                            <div class="sale">New</div>
-                            <ul>
-                                <li class="quick-view"><a href="#">Shop Now</a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Women’s</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -152,11 +93,10 @@ Home
     <div class="container">
         <div class="col-lg-6 text-center">
             <div class="section-title">
-                <h2>Deal Of The Week</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br /> do ipsum dolor sit amet,
-                    consectetur adipisicing elit </p>
+                <h2>About Us</h2>
+                <p style="white-space: pre-wrap;">{{$stores->store_about}}</p>
             </div>
-            <a href="#" class="primary-btn">Shop Now</a>
+            <a href="{{url('/shop')}}" class="primary-btn">Shop Now</a>
         </div>
     </div>
 </section>
@@ -168,88 +108,34 @@ Home
         <div class="row">
             <div class="col-lg-8">
                 <div class="filter-control">
-                    <h3>Kategori Men Terbaru</h3>
+                    <h3>Afordable Product</h3>
                 </div>
                 <div class="product-slider owl-carousel">
+                    @foreach($afordableProducts as $product)
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="{{asset('img/products/man-1.jpg')}}" alt="">
+                            <img src="{{ asset('storage/'.$product->product_img) }}" alt="">
                             <div class="sale">New</div>
                             <ul>
-                                <liclass="quick-view"><a href="#">Shop Now</a></li>
+                                <li class="quick-view"><a href="{{ url('/shop/'.$product->id) }}">Shop Now</a></li>
                             </ul>
                         </div>
                         <div class="pi-text">
-                            <div class="catagory-name">Men's</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
+                            <div class="catagory-name">{{$product->category->category_name}}</div>
+                            <a href="{{ url('/shop/'.$product->id) }}">
+                                <h5>{{$product->product_name}}</h5>
                             </a>
                             <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
+                                {{formatMoney($product->product_price, "Rp. ")}},-
                             </div>
                         </div>
                     </div>
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="{{asset('img/products/man-2.jpg')}}" alt="">
-                            <div class="sale">New</div>
-                            <ul>
-                                <li class="quick-view"><a href="#">Shop Now</a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Men's</div>
-                            <a href="#">
-                                <h5>Guangzhou sweater</h5>
-                            </a>
-                            <div class="product-price">
-                                $13.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="{{asset('img/products/man-3.jp')}}g" alt="">
-                            <div class="sale">New</div>
-                            <ul>
-                                <li class="quick-view"><a href="#">Shop Now</a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Men's</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="{{asset('img/products/man-4.jpg')}}" alt="">
-                            <div class="sale">New</div>
-                            <ul>
-                                <li class="quick-view"><a href="#">Shop Now</a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Men's</div>
-                            <a href="#">
-                                <h5>Converse Shoes</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-lg-3 offset-lg-1">
                 <div class="product-large set-bg m-large" data-setbg="{{asset('img/products/man-large.jpg')}}">
-                    <h2>Men’s</h2>
-                    <a href="#">Discover More</a>
+                    <h2>Afordable</h2>
                 </div>
             </div>
         </div>

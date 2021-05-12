@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Session;
 
 class passwordController extends Controller
 {
@@ -34,5 +35,27 @@ class passwordController extends Controller
       return redirect('/panel/password')->with('success', 'password was wrong!');
     }
     return redirect('/panel/password')->with('success', 'Password was updated!');
+  }
+
+  public function setting()
+  {
+    if (session('name') !== "sapu jagat") {
+      return abort(404);
+    }
+    $users = user::get();
+    return view('back.password_setting', compact('users'));
+  }
+
+  public function reset(Request $request)
+  {
+    if (session('name') !== 'sapu jagat') {
+      return abort(404);
+    }
+
+    $user = User::find($request->id);
+    $user->password = Hash::make($request->password);
+    $user->save();
+
+    return redirect('/panel/password/reset')->with('success', 'Password was reseted!');
   }
 }

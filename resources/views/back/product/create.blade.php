@@ -63,6 +63,10 @@ Create Product
                 </select>
               </div>
               <div class="form-group">
+                <label for="title">Kode Product *</label>
+                <input type="text" class="form-control" name="code" placeholder="kode product" required>
+              </div>
+              <div class="form-group">
                 <label for="title">Judul Product *</label>
                 <input type="text" class="form-control" name="title" placeholder="judul product" required>
               </div>
@@ -82,7 +86,13 @@ Create Product
                     <label class="custom-file-label" for="image">Choose file</label>
                   </div>
                 </div>
-                <p>ukurang maksimal 2mb, dengan format jpg/png</p>
+                <p style="font-size:12px; color:blue;">
+                  ukurang maksimal 2mb
+                  <br />
+                  dengan format jpg/png
+                  <br />
+                  dengan ukuran 440px X 440px
+                </p>
               </div>
             </div>
             <!-- /.card-body -->
