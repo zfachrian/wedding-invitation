@@ -3,18 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Models\Banner;
-use App\Http\Models\Category;
-use App\Http\Models\Product;
+use App\Models\rsvp;
+// use App\Http\Models\Category;
+// use App\Http\Models\Product;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $banners = Banner::orderByDesc('updated_at', 'desc')->get();
-        $categories = Category::orderByDesc('updated_at', 'desc')->limit(3)->get();
-        $newProducts = Product::orderByDesc('created_at', 'desc')->limit(6)->get();
-        $afordableProducts = Product::orderBy('product_price', 'asc')->limit(6)->get();
-        return view('home', compact('banners', 'categories', 'newProducts', 'afordableProducts'));
+        return view('home');
     }
+
+    public function main()
+    {
+        return view('main');
+    }
+
+    public function store(Request $request)
+  {
+    //dd($request);
+    // Form Validate
+    $request->validate([
+      'name' => 'required',
+      'amount' => 'required',
+      'email' => 'required'
+    ]);
+
+    // Eloquent ORM
+    $rsvp = new rsvp;
+    $rsvp->name = $request->name;
+    $rsvp->amount = $request->amount;
+    $rsvp->email = $request->email;
+    //dd($rsvp);
+    $rsvp->save();
+    
+    return redirect()->route('rsvp.index')->with('success', 'Your RSVP data was recorded!');
+  }
 }

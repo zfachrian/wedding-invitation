@@ -1,250 +1,232 @@
-/*  ---------------------------------------------------
-    Template Name: Fashi
-    Description: Fashi eCommerce HTML Template
-    Author: Colorlib
-    Author URI: https://colorlib.com/
-    Version: 1.0
-    Created: Colorlib
----------------------------------------------------------  */
+;(function () {
+	
+	'use strict';
 
-'use strict';
+	var mobileMenuOutsideClick = function() {
 
-(function ($) {
+		$(document).click(function (e) {
+	    var container = $("#fh5co-offcanvas, .js-fh5co-nav-toggle");
+	    if (!container.is(e.target) && container.has(e.target).length === 0) {
 
-    /*------------------
-        Preloader
-    --------------------*/
-    $(window).on('load', function () {
-        $(".loader").fadeOut();
-        $("#preloder").delay(200).fadeOut("slow");
-    });
+	    	if ( $('body').hasClass('offcanvas') ) {
 
-    /*------------------
-        Background Set
-    --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
+    			$('body').removeClass('offcanvas');
+    			$('.js-fh5co-nav-toggle').removeClass('active');
+	    	}
+	    }
+		});
 
-    /*------------------
-		Navigation
-	--------------------*/
-    $(".mobile-menu").slicknav({
-        prependTo: '#mobile-menu-wrap',
-        allowParentLinks: true
-    });
+	};
 
-    /*------------------
-        Hero Slider
-    --------------------*/
-    $(".hero-items").owlCarousel({
-        loop: true,
-        margin: 0,
-        nav: true,
-        items: 1,
-        dots: false,
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-    });
 
-    /*------------------
-        Product Slider
-    --------------------*/
-   $(".product-slider").owlCarousel({
-        loop: true,
-        margin: 25,
-        nav: true,
-        items: 4,
-        dots: true,
-        navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            576: {
-                items: 2,
-            },
-            992: {
-                items: 2,
-            },
-            1200: {
-                items: 3,
-            }
-        }
-    });
+	var offcanvasMenu = function() {
 
-    /*------------------
-       logo Carousel
-    --------------------*/
-    $(".logo-carousel").owlCarousel({
-        loop: false,
-        margin: 30,
-        nav: false,
-        items: 5,
-        dots: false,
-        navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
-        smartSpeed: 1200,
-        autoHeight: false,
-        mouseDrag: false,
-        autoplay: true,
-        responsive: {
-            0: {
-                items: 3,
-            },
-            768: {
-                items: 5,
-            }
-        }
-    });
+		$('#page').prepend('<div id="fh5co-offcanvas" />');
+		$('#page').prepend('<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle fh5co-nav-white"><i></i></a>');
+		var clone1 = $('.menu-1 > ul').clone();
+		$('#fh5co-offcanvas').append(clone1);
+		var clone2 = $('.menu-2 > ul').clone();
+		$('#fh5co-offcanvas').append(clone2);
 
-    /*-----------------------
-       Product Single Slider
-    -------------------------*/
-    $(".ps-slider").owlCarousel({
-        loop: false,
-        margin: 10,
-        nav: true,
-        items: 3,
-        dots: false,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-    });
-    
-    /*------------------
-        CountDown
-    --------------------*/
-    // For demo preview
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
+		$('#fh5co-offcanvas .has-dropdown').addClass('offcanvas-has-dropdown');
+		$('#fh5co-offcanvas')
+			.find('li')
+			.removeClass('has-dropdown');
 
-    if(mm == 12) {
-        mm = '01';
-        yyyy = yyyy + 1;
-    } else {
-        mm = parseInt(mm) + 1;
-        mm = String(mm).padStart(2, '0');
-    }
-    var timerdate = mm + '/' + dd + '/' + yyyy;
-    // For demo preview end
+		// Hover dropdown menu on mobile
+		$('.offcanvas-has-dropdown').mouseenter(function(){
+			var $this = $(this);
 
-    console.log(timerdate);
-    
+			$this
+				.addClass('active')
+				.find('ul')
+				.slideDown(500, 'easeOutExpo');				
+		}).mouseleave(function(){
 
-    // Use this for real timer date
-    /* var timerdate = "2020/01/01"; */
+			var $this = $(this);
+			$this
+				.removeClass('active')
+				.find('ul')
+				.slideUp(500, 'easeOutExpo');				
+		});
 
-	$("#countdown").countdown(timerdate, function(event) {
-        $(this).html(event.strftime("<div class='cd-item'><span>%D</span> <p>Days</p> </div>" + "<div class='cd-item'><span>%H</span> <p>Hrs</p> </div>" + "<div class='cd-item'><span>%M</span> <p>Mins</p> </div>" + "<div class='cd-item'><span>%S</span> <p>Secs</p> </div>"));
-    });
 
-        
-    /*----------------------------------------------------
-     Language Flag js 
-    ----------------------------------------------------*/
-    $(document).ready(function(e) {
-    //no use
-    try {
-        var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
-            var val = data.value;
-            if(val!="")
-                window.location = val;
-        }}}).data("dd");
+		$(window).resize(function(){
 
-        var pagename = document.location.pathname.toString();
-        pagename = pagename.split("/");
-        pages.setIndexByValue(pagename[pagename.length-1]);
-        $("#ver").html(msBeautify.version.msDropdown);
-    } catch(e) {
-        // console.log(e);
-    }
-    $("#ver").html(msBeautify.version.msDropdown);
+			if ( $('body').hasClass('offcanvas') ) {
 
-    //convert
-    $(".language_drop").msDropdown({roundedBorder:false});
-        $("#tech").data("dd");
-    });
-    /*-------------------
-		Range Slider
-	--------------------- */
-	var rangeSlider = $(".price-range"),
-		minamount = $("#minamount"),
-		maxamount = $("#maxamount"),
-		minPrice = rangeSlider.data('min'),
-		maxPrice = rangeSlider.data('max');
-	    rangeSlider.slider({
-		range: true,
-		min: minPrice,
-        max: maxPrice,
-		values: [minPrice, maxPrice],
-		slide: function (event, ui) {
-			minamount.val('$' + ui.values[0]);
-			maxamount.val('$' + ui.values[1]);
-		}
-	});
-	minamount.val('$' + rangeSlider.slider("values", 0));
-    maxamount.val('$' + rangeSlider.slider("values", 1));
+    			$('body').removeClass('offcanvas');
+    			$('.js-fh5co-nav-toggle').removeClass('active');
+				
+	    	}
+		});
+	};
 
-    /*-------------------
-		Radio Btn
-	--------------------- */
-    $(".fw-size-choose .sc-item label, .pd-size-choose .sc-item label").on('click', function () {
-        $(".fw-size-choose .sc-item label, .pd-size-choose .sc-item label").removeClass('active');
-        $(this).addClass('active');
-    });
-    
-    /*-------------------
-		Nice Select
-    --------------------- */
-    $('.sorting, .p-show').niceSelect();
 
-    /*------------------
-		Single Product
-	--------------------*/
-	$('.product-thumbs-track .pt').on('click', function(){
-		$('.product-thumbs-track .pt').removeClass('active');
-		$(this).addClass('active');
-		var imgurl = $(this).data('imgbigurl');
-		var bigImg = $('.product-big-img').attr('src');
-		if(imgurl != bigImg) {
-			$('.product-big-img').attr({src: imgurl});
-			$('.zoomImg').attr({src: imgurl});
-		}
-	});
+	var burgerMenu = function() {
 
-    $('.product-pic-zoom').zoom();
-    
-    /*-------------------
-		Quantity change
-	--------------------- */
-    var proQty = $('.pro-qty');
-	proQty.prepend('<span class="dec qtybtn">-</span>');
-	proQty.append('<span class="inc qtybtn">+</span>');
-	proQty.on('click', '.qtybtn', function () {
-		var $button = $(this);
-		var oldValue = $button.parent().find('input').val();
-		if ($button.hasClass('inc')) {
-			var newVal = parseFloat(oldValue) + 1;
-		} else {
-			// Don't allow decrementing below zero
-			if (oldValue > 0) {
-				var newVal = parseFloat(oldValue) - 1;
+		$('body').on('click', '.js-fh5co-nav-toggle', function(event){
+			var $this = $(this);
+
+
+			if ( $('body').hasClass('overflow offcanvas') ) {
+				$('body').removeClass('overflow offcanvas');
 			} else {
-				newVal = 0;
+				$('body').addClass('overflow offcanvas');
 			}
+			$this.toggleClass('active');
+			event.preventDefault();
+
+		});
+	};
+
+
+
+	var contentWayPoint = function() {
+		var i = 0;
+		$('.animate-box').waypoint( function( direction ) {
+
+			if( direction === 'down' && !$(this.element).hasClass('animated-fast') ) {
+				
+				i++;
+
+				$(this.element).addClass('item-animate');
+				setTimeout(function(){
+
+					$('body .animate-box.item-animate').each(function(k){
+						var el = $(this);
+						setTimeout( function () {
+							var effect = el.data('animate-effect');
+							if ( effect === 'fadeIn') {
+								el.addClass('fadeIn animated-fast');
+							} else if ( effect === 'fadeInLeft') {
+								el.addClass('fadeInLeft animated-fast');
+							} else if ( effect === 'fadeInRight') {
+								el.addClass('fadeInRight animated-fast');
+							} else {
+								el.addClass('fadeInUp animated-fast');
+							}
+
+							el.removeClass('item-animate');
+						},  k * 200, 'easeInOutExpo' );
+					});
+					
+				}, 100);
+				
+			}
+
+		} , { offset: '85%' } );
+	};
+
+
+	var dropdown = function() {
+
+		$('.has-dropdown').mouseenter(function(){
+
+			var $this = $(this);
+			$this
+				.find('.dropdown')
+				.css('display', 'block')
+				.addClass('animated-fast fadeInUpMenu');
+
+		}).mouseleave(function(){
+			var $this = $(this);
+
+			$this
+				.find('.dropdown')
+				.css('display', 'none')
+				.removeClass('animated-fast fadeInUpMenu');
+		});
+
+	};
+
+
+	var testimonialCarousel = function(){
+		var owl = $('.owl-carousel-fullwidth');
+		owl.owlCarousel({
+			items: 1,
+			loop: true,
+			margin: 0,
+			responsiveClass: true,
+			nav: false,
+			dots: true,
+			smartSpeed: 800,
+			autoHeight: true,
+		});
+	};
+
+
+	var goToTop = function() {
+
+		$('.js-gotop').on('click', function(event){
+			
+			event.preventDefault();
+
+			$('html, body').animate({
+				scrollTop: $('html').offset().top
+			}, 500, 'easeInOutExpo');
+			
+			return false;
+		});
+
+		$(window).scroll(function(){
+
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$('.js-top').addClass('active');
+			} else {
+				$('.js-top').removeClass('active');
+			}
+
+		});
+	
+	};
+
+
+	// Loading page
+	var loaderPage = function() {
+		$(".fh5co-loader").fadeOut("slow");
+	};
+
+	var counter = function() {
+		$('.js-counter').countTo({
+			 formatter: function (value, options) {
+	      return value.toFixed(options.decimals);
+	    },
+		});
+	};
+
+	var counterWayPoint = function() {
+		if ($('#fh5co-counter').length > 0 ) {
+			$('#fh5co-counter').waypoint( function( direction ) {
+										
+				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
+					setTimeout( counter , 400);					
+					$(this.element).addClass('animated');
+				}
+			} , { offset: '90%' } );
 		}
-		$button.parent().find('input').val(newVal);
+	};
+
+	// Parallax
+	var parallax = function() {
+		$(window).stellar();
+	};
+
+	
+	$(function(){
+		mobileMenuOutsideClick();
+		parallax();
+		offcanvasMenu();
+		burgerMenu();
+		contentWayPoint();
+		dropdown();
+		testimonialCarousel();
+		goToTop();
+		loaderPage();
+		counter();
+		counterWayPoint();
 	});
 
-})(jQuery);
+
+}());
