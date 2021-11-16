@@ -342,7 +342,7 @@ figure {
 }
 .fh5co-cover .display-t,
 .fh5co-cover .display-tc {
-    height: 900px;
+    height: 100vh;
     display: table;
     width: 100%;
 }
@@ -1948,5 +1948,10 @@ main {
         height: 400px;
     }
 }
+
+.pointer {
+    cursor: pointer;
+}
+/* .namaclass:hover { } */
 
 /*# sourceMappingURL=style.css.map */

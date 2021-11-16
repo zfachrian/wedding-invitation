@@ -5,7 +5,7 @@ Home
 @endsection
 
 @section('content')
-	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/bg-main.jpg);" data-stellar-background-ratio="0.5">
+	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/bg-main.jpg); height:100vh;" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -370,54 +370,37 @@ Home
 			
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>We Offer Services</h2>
+					<h2>Wedding Gift</h2>
 					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6 pointer" data-toggle="modal" data-target="#modalAngpao">
 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
 						<span class="icon">
 							<i class="icon-calendar"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>We Organized Events</h3>
+							<h3>Angpao</h3>
 							<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
 						</div>
 					</div>
-
+				</div>
+				<div class="col-md-6 pointer" data-toggle="modal" data-target="#modalHadiah">
 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
 						<span class="icon">
 							<i class="icon-image"></i>
 						</span>
 						<div class="feature-copy">
-							<h3>Photoshoot</h3>
+							<h3>Kirim Kado</h3>
 							<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
 						</div>
 					</div>
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-video"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>Video Editing</h3>
-							<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-						</div>
-					</div>
-
 				</div>
 
-				<div class="col-md-6 animate-box">
-					<div class="fh5co-video fh5co-bg" style="background-image: url(images/img_bg_3.jpg); ">
-						<a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-video2"></i></a>
-						<div class="overlay"></div>
-					</div>
-				</div>
 			</div>
 
-			
 		</div>
 	</div>
 
@@ -478,6 +461,52 @@ Home
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modalHadiah" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			...
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- Modal Angpao -->
+	<div class="modal fade" id="modalAngpao" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<h5>Popover in a modal</h5>
+			<p>This <a href="#" role="button" class="btn btn-secondary popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">button</a> triggers a popover on click.</p>
+			<hr>
+			<h5>Tooltips in a modal</h5>
+			<p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+		</div>
+	</div>
 	</div>
 	@endsection
 	

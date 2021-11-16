@@ -48,9 +48,10 @@
     <body>
    <!-- NAV -->
 
-   <div class="fh5co-loader"></div>
+   <!-- <div class="fh5co-loader"></div>
 	
-	<div id="page">
+	<div id="page"> -->
+	<!--
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="row">
@@ -63,12 +64,6 @@
 						<li><a href="about.html">Story</a></li>
 						<li class="has-dropdown">
 							<a href="#fh5co-started">RSVP</a>
-							<!-- <ul class="dropdown">
-								<li><a href="#">Web Design</a></li>
-								<li><a href="#">eCommerce</a></li>
-								<li><a href="#">Branding</a></li>
-								<li><a href="#">API</a></li>
-							</ul> -->
 						</li>
 						<li class="has-dropdown">
 							<a href="gallery.html">Gallery</a>
@@ -86,6 +81,7 @@
 			
 		</div>
 	</nav>
+	-->
     <!-- END NAV -->
     @yield('content')
 
